@@ -38,7 +38,7 @@ def emp_update_view(request, emp_id):
 		form = EmpDetailForm(request.POST)
 
 		if form.is_valid():
-			Employee.objects.create(**form.cleaned_data)
+			Employee.objects.update(**form.cleaned_data)
 			return HttpResponseRedirect('/emp_details')
 
 	else:
