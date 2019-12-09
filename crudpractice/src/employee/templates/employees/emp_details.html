@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content_details %}
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>company id</th>
+			<th>age</th>
+			<th>email</th>
+			<th>location</th>
+			<th>designation</th>
+			<th>skill</th>
+		</tr>
+		{% for emp in employees %}
+			<tr>
+				<td>{{emp.name}}</td>
+				<td>{{emp.company_id}}</td>
+				<td>{{emp.age}}</td>
+				<td>{{emp.email}}</td>
+				<td>{{emp.location}}</td>
+				<td>{{emp.designation}}</td>
+				<td>{{emp.skill}}</td>
+				<td>{{emp.id}}</td>
+				<td><a href="update/{{emp.id}}">Update</a> | <a href="delete/{{emp.id}}">Delete</a></td>
+			</tr>
+		{% endfor %}
+	</table>
+	
+{% endblock %}
