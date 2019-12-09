@@ -12,7 +12,8 @@ def emp_create_view(request):
 		form = EmpDetailForm(request.POST)
 
 		if form.is_valid():
-			Employee.objects.create(**form.cleaned_data)
+			form.save()
+			# Employee.objects.create(**form.cleaned_data)
 			return HttpResponseRedirect('/emp_details')
 
 	else:
@@ -33,18 +34,13 @@ def emp_details_view(request):
 
 
 def emp_update_view(request, emp_id):
+	instance = Employee.objects.get(id=emp_id)
+	form = EmpDetailForm(request.POST or None, instance=instance)
 	if request.method == 'POST':
-		print(id)
-		form = EmpDetailForm(request.POST)
-
 		if form.is_valid():
-			Employee.objects.update(**form.cleaned_data)
+			form.save()
+			# Employee.objects.update(**form.cleaned_data)
 			return HttpResponseRedirect('/emp_details')
-
-	else:
-		print("hello")
-		instance = Employee.objects.get(id=emp_id)
-		form = EmpDetailForm(request.POST or None, instance=instance)
 
 	context = {
 		'form':form,
